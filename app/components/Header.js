@@ -7,7 +7,7 @@ const Header = () => {
     <StyledHeader>
       <Logo className="logo">
         <img width={45} src="/logo.png" alt="" />
-        <span>Shopify</span>
+        <span>Namjot</span>
       </Logo>
       <nav>
         <StyledLink href={"/"}>Home</StyledLink>

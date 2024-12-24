@@ -16,6 +16,32 @@ export const StyledHero = styled.div`
     h2{
         margin-bottom: 20px;
         font-size: 50px;
+        transition: 4 all ease-in-out;
+        text-shadow: 
+            0 0 5px rgb(250, 139, 120),
+            0 0 10px rgb(250, 139, 120),
+            0 0 20px rgb(250, 139, 120),
+            0 0 40px rgb(250, 139, 120),
+            0 0 80px rgb(250, 139, 120);
+        animation: neon-glow 4s infinite;
+    }
+    @keyframes neon-glow {
+        0% {
+            text-shadow: 
+            0 0 5px rgb(250, 139, 120),
+            0 0 10px rgb(250, 139, 120),
+            0 0 20px rgb(250, 139, 120),
+            0 0 40px rgb(250, 139, 120),
+            0 0 80px rgb(250, 139, 120);
+        }
+        100% {
+            text-shadow: 
+            0 0 5px rgb(255, 160, 149),
+            0 0 10px rgb(255, 160, 149),
+            0 0 30px rgb(255, 160, 149),
+            0 0 50px rgb(255, 160, 149),
+            0 0 80px rgb(255, 160, 149);
+        }
     }
     p{
         color:rgb(174, 174, 174);
@@ -23,8 +49,9 @@ export const StyledHero = styled.div`
         margin-top: 10px;
     }
     img{
-        width: 400px;
+        width: 90%;
         font-size: 80px;
+        
     }
     
 `

@@ -21,7 +21,12 @@ export const Logo = styled.div`
 
 export const StyledLink = styled(Link)`
   font-size: 20px;
-  color: white;
+  color:rgb(159, 159, 159);
   text-decoration: none;
   margin: 0 10px;
+  transition: .19s all;
+  
+  &:hover{
+    color: #fff;
+  }
 `;
