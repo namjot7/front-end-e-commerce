@@ -2,29 +2,19 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import GlobalStyles from "./components/styles/GLobalStyles";
+import GlobalStyles from "./components/styles/GlobalStyles";
+import LatestProducts from "./components/LatestProducts";
 // import { createGlobalStyle } from "styled-components";
 
 export default function Home() {
 
-  const [featuredProduct, setFeaturedProduct] = useState(null);
-
-  useEffect(() => {
-    fetch("/api/featured")
-      .then(res => res.json())
-      .then(data => setFeaturedProduct(data.featuredProduct));
-  }, []);
-  console.log(featuredProduct);
-  // const a = featuredProduct.images;
-  // console.log(a[1]);
-
-  // console.log(featuredProduct);
 
   return (
     <>
       <GlobalStyles />
       <Header />
-      {featuredProduct && <Hero product={featuredProduct} />}
+      {/* <Hero /> */}
+      <LatestProducts />
     </>
   );
 }

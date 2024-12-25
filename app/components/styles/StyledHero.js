@@ -1,17 +1,14 @@
 import styled from 'styled-components'
 
-export const StyledHero = styled.div`
-    /* display: grid;
-    grid-template-columns: 1fr 1fr; */
+const StyledHero = styled.div`
+    /* height: 100vh; */
+    background: #000;
+    color: white;
     display: flex;
-    /* flex-wrap: wrap-reverse; */
     align-items: center;
     gap: 70px;
-    width: 80vw;
-    margin: auto;
-    padding: 30px;
-    padding-top: 100px;
-    background: #000;
+    padding: 140px;
+    margin-bottom: 50px;
 
     h2{
         margin-bottom: 20px;
@@ -51,7 +48,9 @@ export const StyledHero = styled.div`
     img{
         width: 90%;
         font-size: 80px;
-        
-    }
-    
-`
+    }  
+    @media (max-width: 768px){
+        flex-direction: column-reverse;
+    } 
+`;
+export default StyledHero;

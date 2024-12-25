@@ -42,3 +42,30 @@ animation: neon-glow 1.5s infinite alternate;
         }
     }
 ````
+
+### For Admin dashboard: To send the data to front end in ANOTHER PROJECT 
+````
+INSIDE api/products/route.js
+
+// import Cors from 'cors';
+
+// const cors = Cors({
+//     origin: 'http://localhost:3001',
+//     methods: ['GET', 'POST', 'OPTIONS'],
+// });
+
+// function runMiddleware(req, res, fn) {
+//     return new Promise((resolve, reject) => {
+//         fn(req, res, (result) => {
+//             if (result instanceof Error) {
+//                 return reject(result);
+//             }
+//             return resolve(result);
+//         });
+//     });
+// }
+
+inside GET method
+// await runMiddleware(req, res, cors);
+
+````

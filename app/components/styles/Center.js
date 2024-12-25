@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-export const Center = styled.div`
-    width: 70vw;
+const Center = styled.div`
+    width: 80vw;
     margin: auto;
-`
+`;
+export default Center;

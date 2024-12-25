@@ -27,20 +27,31 @@ const StyledButton = styled.button`
     ${ButtonCss}
 `;
 const StyledLink = styled(Link)`
-    background-color: skyblue;
+    /* background-color: skyblue; */
     ${ButtonCss}
     text-decoration: none;
 `;
 
-const Button = ({ children, href, ...rest }) => {
+const Button = ({ children, href, className, ...rest }) => {
 
     const renderLink = () => (
-        <StyledLink href={href} {...rest}>{children}</StyledLink>
+        <StyledLink className={className} href={href} {...rest}>
+            {children}
+        </StyledLink>
     )
     const renderButton = () => (
-        <StyledButton {...rest}>{children}</StyledButton>
+        <StyledButton className={className} {...rest}>
+            {children}
+        </StyledButton>
     )
     return href ? renderLink() : renderButton();
 }
-
+export const CartButton = styled(Link)`
+    display: inline-block;
+    cursor: pointer;
+    /* background: #fff; */
+    outline: 2px solid white;
+    padding: 2px 7px;
+    border-radius: 7px;
+`;
 export default Button
