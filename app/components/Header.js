@@ -1,8 +1,13 @@
 "use client"
-import React from 'react'
-import { StyledHeader, Logo, StyledLink } from './styles/StyledHeader'
+import React, { useContext } from 'react'
+import { StyledHeader, Logo } from './styles/StyledHeader'
+import { CartContext } from './CartContext'
+import { StyledLinkSecondary } from './styles/StyledButtons'
 
 const Header = () => {
+  const { cartProducts, setCartProducts } = useContext(CartContext); // get context data
+  // console.log(cartProducts);
+
   return (
     <StyledHeader>
       <Logo className="logo">
@@ -10,10 +15,10 @@ const Header = () => {
         <span>Namjot</span>
       </Logo>
       <nav>
-        <StyledLink href={"/"}>Home</StyledLink>
-        <StyledLink href={"/products"}>Products</StyledLink>
-        <StyledLink href={"/orders"}>Orders</StyledLink>
-        <StyledLink href={"/cart"}>Cart (0)</StyledLink>
+        <StyledLinkSecondary href={"/"}>Home</StyledLinkSecondary>
+        <StyledLinkSecondary href={"/products"}>Products</StyledLinkSecondary>
+        <StyledLinkSecondary href={"/orders"}>Orders</StyledLinkSecondary>
+        <StyledLinkSecondary href={"/cart"}>Cart ({cartProducts?.length || "0"})</StyledLinkSecondary>
       </nav>
     </StyledHeader>
   )

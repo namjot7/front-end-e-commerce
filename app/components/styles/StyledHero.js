@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
 const StyledHero = styled.div`
-    /* height: 100vh; */
+    height: 80vh;
     background: #000;
     color: white;
     display: flex;
     align-items: center;
     gap: 70px;
-    padding: 140px;
+    /* padding: 140px; */
     margin-bottom: 50px;
 
     h2{
@@ -49,8 +49,8 @@ const StyledHero = styled.div`
         width: 90%;
         font-size: 80px;
     }  
-    @media (max-width: 768px){
+    /* @media (max-width: 768px){
         flex-direction: column-reverse;
-    } 
+    }  */
 `;
 export default StyledHero;

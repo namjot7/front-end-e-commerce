@@ -9,17 +9,16 @@ const LatestProducts = () => {
     useEffect(() => {
         fetch("/api/products")
             .then(res => res.json())
-            .then(data => setLatestProducts(data)
-            );
+            .then(data => setLatestProducts(data));
     }, []);
-    console.log(latestProducts);
+    // console.log(latestProducts);
 
     return (
         <Center>
             <h1>New Arrivals</h1>
             <StyledProductsGrid>
                 {latestProducts.map(product => (
-                    <Card key={product._id} {...product} />
+                    <Card key={product._id} {...product} cartBtn />
                 ))}
             </StyledProductsGrid>
         </Center>

@@ -9,17 +9,29 @@ export const GET = async (req) => {
     const symbols = Object.getOwnPropertySymbols(req);
     const state = req[symbols[1]];
     const searchParams = state.url.searchParams;
+
     const id = searchParams.get('id');
-    console.log(id);
+    const ids = searchParams.get('ids');
+    console.log(id, ids);
 
     // Featured product
     if (id) {
         const featuredProduct = await Product.findById(id);
         return NextResponse.json(featuredProduct);
     }
-    // Return all products / { sort: { "_id": -1 } }
-    const allProducts = await Product.find({}, null, { sort: { "updatedAt": -1 }, limit: 5 }); // or { sort: { "updatedAt": -1 }}).limit(5)
-    return NextResponse.json(allProducts);
-    // return an Array: latest updated as array[0] first element
-    // limit the latest products to 3 or 5
+    // Cart products
+    else if (ids) {
+        let idsArray = ids.split(","); // convert string to array
+        // console.log("Ids", idsArray);
+        let products = [];
+
+        for (let id of idsArray) {
+            const product = await Product.findById(id);
+            products.push(product)
+        }
+        return NextResponse.json(products);
+    }
+    // Latest products  
+    const latestProducts = await Product.find({}, null, { sort: { "updatedAt": -1 }, limit: 5 }); // OR  { sort: { "_id": -1 } } OR { sort: { "updatedAt": -1 }}).limit(5)
+    return NextResponse.json(latestProducts); // return an Array: latest updated being as array[0] first element
 }
