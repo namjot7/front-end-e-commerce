@@ -7,10 +7,12 @@ import Button from '../components/Button';
 import { StyledCartContainer } from '../components/styles/StyledCart';
 import CartCard from '../components/CartCard';
 import OrderInfo from '../components/OrderInfo';
+import { SecondaryHead } from '../components/styles/StyledHeader';
 
 const Cart = () => {
     const { cartProducts, setCartProducts } = useContext(CartContext); // stores product ids
     const [products, setProducts] = useState([])
+    const [showSucess, setShowSucess] = useState(false);
     let totalPrice = 0;
 
     // Get price of products in the cart
@@ -35,9 +37,15 @@ const Cart = () => {
         }
     }, [cartProducts])
 
+    // Payment Successful
     useEffect(() => {
+        if (window.location.href.includes("success")) {
+            setShowSucess(true); // show text
+            setCartProducts([]); // remove from the Cart context Array
+            localStorage.removeItem('cart'); // delete from Local Storage
+        }
         // calculatePrice();
-    }, [])
+    }, [showSucess])
     // console.log({ cartProducts, products });
 
     return (
@@ -45,13 +53,17 @@ const Cart = () => {
             <Center>
                 <h1>Cart</h1>
 
+                {showSucess && <SecondaryHead>
+                    Payment Successful. We will sent you an email when your order is shipped.
+                </SecondaryHead>}
+
                 {!!cartProducts?.length && <StyledCartContainer>
                     <div>
                         {products.map(product => (
                             <CartCard key={product._id} {...product} />
                         ))}
                     </div>
-                    <OrderInfo totalPrice={totalPrice} />
+                    <OrderInfo totalPrice={totalPrice} cartProducts={cartProducts} />
                 </StyledCartContainer>}
 
                 {!cartProducts?.length &&

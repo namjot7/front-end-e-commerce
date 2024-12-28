@@ -13,52 +13,72 @@ const Input = styled.input`
     border-radius: 7px;
     margin-bottom:10px;
 `;
-const OrderInfo = ({ totalPrice }) => {
+const OrderInfo = ({ totalPrice, cartProducts }) => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
-    const [streetaddress, setStreetAddress] = useState("");
+    const [streetAddress, setStreetAddress] = useState("");
     const [city, setCity] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [country, setCountry] = useState("");
 
 
-    const handleCheckout = (e) => {
+    const handleCheckout = async (e) => {
         e.preventDefault();
 
         const formData = {
-            username, email, city, postalCode, country, streetaddress
+            username,
+            email,
+            city,
+            postalCode,
+            country,
+            streetAddress,
+            productsIds: cartProducts,
         };
         console.log(formData);
 
+        const response = await fetch("/api/checkout", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        const data = await response.json();
 
+        // Open the STRIPE checkout page
+        if (data.url) window.location.href = data.url;
     }
     return (
         <div>
             <SecondaryHead>Order Information</SecondaryHead>
 
             <form action="/api/checkout" onSubmit={e => handleCheckout(e)}>
-                <Input
+                {/*  <input type="hidden" name="products" value={cartProducts.join(",")} /> */}
+                <Input type="text" placeholder='Full Name'
                     value={username}
-                    onChange={e => setUsername(e.target.value)}
-                    type="text"
-                    placeholder='Full Name' />
-                <Input value={email}
-                    onChange={e => setEmail(e.target.value)} type="text" placeholder='Email' />
-                <Input value={streetaddress}
-                    onChange={e => setStreetAddress(e.target.value)} type="text" placeholder='Street address' />
+                    onChange={e => setUsername(e.target.value)} />
+                <Input type="text" placeholder='Email'
+                    value={email}
+                    onChange={e => setEmail(e.target.value)} />
+                <Input type="text" placeholder='Street address'
+                    value={streetAddress}
+                    onChange={e => setStreetAddress(e.target.value)} />
                 <Flex>
-                    <Input value={city}
-                        onChange={e => setCity(e.target.value)} type="text" placeholder='City' />
-                    <Input value={postalCode}
-                        onChange={e => setPostalCode(e.target.value)} type="text" placeholder='Postal Code' />
+                    <Input type="text" placeholder='City'
+                        value={city}
+                        onChange={e => setCity(e.target.value)} />
+                    <Input type="text" placeholder='Postal Code'
+                        value={postalCode}
+                        onChange={e => setPostalCode(e.target.value)} />
                 </Flex>
-                <Input value={country}
-                    onChange={e => setCountry(e.target.value)} type="text" placeholder='Country' />
+                <Input type="text" placeholder='Country'
+                    value={country}
+                    onChange={e => setCountry(e.target.value)} />
 
                 <CheckoutButton type='submit'>Pay ${totalPrice}</CheckoutButton>
             </form>
-        </div>
+        </div >
     )
 }
 
-export default OrderInfo
+export default OrderInfo;
