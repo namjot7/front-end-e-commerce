@@ -10,9 +10,9 @@ import OrderInfo from '../components/OrderInfo';
 import { SecondaryHead } from '../components/styles/StyledHeader';
 
 const Cart = () => {
-    const { cartProducts, setCartProducts } = useContext(CartContext); // stores product ids
+    const { cartProducts, setCartProducts, clearCart, showSuccess } = useContext(CartContext); // stores product ids
+
     const [products, setProducts] = useState([])
-    const [showSucess, setShowSucess] = useState(false);
     let totalPrice = 0;
 
     // Get price of products in the cart
@@ -40,12 +40,10 @@ const Cart = () => {
     // Payment Successful
     useEffect(() => {
         if (window.location.href.includes("success")) {
-            setShowSucess(true); // show text
-            setCartProducts([]); // remove from the Cart context Array
-            localStorage.removeItem('cart'); // delete from Local Storage
+            clearCart()
         }
         // calculatePrice();
-    }, [showSucess])
+    }, [])
     // console.log({ cartProducts, products });
 
     return (
@@ -53,7 +51,7 @@ const Cart = () => {
             <Center>
                 <h1>Cart</h1>
 
-                {showSucess && <SecondaryHead>
+                {showSuccess && <SecondaryHead>
                     Payment Successful. We will sent you an email when your order is shipped.
                 </SecondaryHead>}
 

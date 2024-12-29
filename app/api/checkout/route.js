@@ -1,10 +1,10 @@
 import { initMongoose } from "@/lib/mongoose";
-import Order from "@/models/Model";
+import Order from "@/models/Order";
 import Product from "@/models/Product";
 import { NextResponse } from "next/server";
 import Stripe from 'stripe';
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req) {
     await initMongoose();
@@ -53,7 +53,7 @@ export async function POST(req) {
         country,
         paid: false,
     });
-    console.log(order);
+    // console.log(order);
 
 
     // Create Stripe Checkout Session

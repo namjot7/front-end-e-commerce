@@ -69,3 +69,15 @@ inside GET method
 // await runMiddleware(req, res, cors);
 
 ````
+
+
+### CartContext (commented code: NO NEED)
+
+````
+  useEffect(() => {
+        if (cartProducts?.length > 0) {
+            LS.setItem('cart', JSON.stringify(cartProducts)); // save to local storage
+            // set
+        }
+    }, [cartProducts])
+````

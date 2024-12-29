@@ -6,16 +6,11 @@ export const CartContext = createContext({});
 export function CartContextProvider({ children }) {
 
     const [cartProducts, setCartProducts] = useState([]);
+    const [showSuccess, setShowSuccess] = useState(false);
+
     let LS = typeof window !== "undefined" ? window.localStorage : null;
 
-    // useEffect(() => {
-    //     if (cartProducts?.length > 0) {
-    //         LS.setItem('cart', JSON.stringify(cartProducts)); // save to local storage
-    //         // set
-    //     }
-    // }, [cartProducts])
-
-    // Get products from Locat storage when page is loaded
+    // Get products from Local storage when page is loaded
     useEffect(() => {
         if (LS && LS.getItem('cart')) {
             setCartProducts(JSON.parse(LS.getItem('cart')))
@@ -29,8 +24,14 @@ export function CartContextProvider({ children }) {
             return newCart;
         });
     }
+    const clearCart = () => {
+        setShowSuccess(true); // show text
+        setCartProducts([]); // remove from the Cart context Array
+        localStorage.removeItem('cart'); // delete from Local Storage
+    }
+
     return (
-        <CartContext.Provider value={{ cartProducts, setCartProducts, addProduct }}>
+        <CartContext.Provider value={{ cartProducts, setCartProducts, addProduct, clearCart, showSuccess }}>
             {children}
         </CartContext.Provider>
     )
