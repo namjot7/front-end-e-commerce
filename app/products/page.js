@@ -1,9 +1,10 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
-import Center from '../components/styles/Center';
-import StyledProductsGrid from '../components/styles/StyledProductsGrid';
+
 import Card from '../components/Card';
+import { StyledProductsGrid } from '../components/styles/StyledProductsGrid';
+import { Center } from '../components/styles/Center';
 
 const Product = () => {
     const [products, setProducts] = useState([]);
@@ -13,7 +14,7 @@ const Product = () => {
             .then(res => res.json())
             .then(data => setProducts(data));
     }, []);
-    console.log(products);
+    // console.log(products);
     return (
         <Layout>
             <Center>

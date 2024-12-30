@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import StyledProductsGrid from './styles/StyledProductsGrid';
-import Center from './styles/Center';
 import Card from './Card';
+import { StyledProductsGrid } from './styles/StyledProductsGrid';
+import { Center } from './styles/Center';
 
 const LatestProducts = () => {
     const [latestProducts, setLatestProducts] = useState([]);

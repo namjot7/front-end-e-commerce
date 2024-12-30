@@ -18,7 +18,7 @@ export const GET = async (req) => {
     const latest = searchParams.get('latest');
     console.log({ id, ids, latest });
 
-    // Featured product
+    // One specific product based on ID: Featured product / Product details
     if (id) {
         const featuredProduct = await Product.findById(id);
         return NextResponse.json(featuredProduct);

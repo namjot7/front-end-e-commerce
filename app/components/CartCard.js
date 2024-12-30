@@ -3,14 +3,11 @@ import { QunatityLabel, StyledCartCard } from './styles/StyledCart'
 import { MinusIcon, PlusIcon } from '../assets/buttons'
 import { CartContext } from './CartContext'
 import { Flex } from './styles/Center'
+import { adminHost } from './Header'
 
-const CartCard = ({ _id, title, price }) => {
+const CartCard = ({ _id, title, price, images }) => {
     const { cartProducts, setCartProducts, addProduct } = useContext(CartContext);
     let quantity = cartProducts.filter(id => id == _id).length; // Filter the array on based of the product Id and get the length of the filtered array
-
-
-
-
 
     const increaseQuantity = (id) => {
         addProduct(id); // from CartContext
@@ -27,7 +24,7 @@ const CartCard = ({ _id, title, price }) => {
 
     return (
         <StyledCartCard>
-            <div><img src="s24.jpg" alt="" /></div>
+            <div><img src={adminHost + images[0]} alt="" /></div>
             <div>
                 {/* <p>category</p> */}
                 <p className='title'>{title}</p>

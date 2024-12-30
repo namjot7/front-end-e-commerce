@@ -4,6 +4,8 @@ import { StyledHeader, Logo } from './styles/StyledHeader'
 import { CartContext } from './CartContext'
 import { StyledLinkSecondary } from './styles/StyledButtons'
 
+export let adminHost = process.env.NEXT_PUBLIC_ADMIN_LOCAL_HOST;
+
 const Header = () => {
   const { cartProducts, setCartProducts } = useContext(CartContext); // get context data
   // console.log(cartProducts);

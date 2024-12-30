@@ -61,8 +61,8 @@ export async function POST(req) {
         line_items,
         mode: 'payment',
         customer_email: email,
-        success_url: `${process.env.LOCAL_HOST}/cart?success=true`,
-        cancel_url: `${process.env.LOCAL_HOST}/car/?cancel=true`,
+        success_url: `${process.env.FRONT_END_LOCAL_HOST}/cart?success=true`,
+        cancel_url: `${process.env.FRONT_END_LOCAL_HOST}/car/?cancel=true`,
         metadata: { orderId: order._id.toString(), test: "OK" } // send this to user as orderId for reference
     })
     // console.log(session.url);

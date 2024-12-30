@@ -21,7 +21,7 @@ const ButtonCss = css`
             background-color: #1282f1;
         }
     `}
-    ${props => props.size == "l" && css`
+    ${props => props.size == "large" && css`
         font-size: 18px;
     `}
 `;
@@ -31,10 +31,12 @@ export const StyledButton = styled.button`
 export const ButtonOutlined = styled.button`
     ${ButtonCss}
     display: inline-block;
-    outline: 2px solid white;
-    padding: 2px 7px;
+    border: 2px solid white;
+    padding: 3px 7px;
     background: transparent;
     border-radius: 7px;
+
+    
 `;
 export const CheckoutButton = styled.button`
     ${ButtonCss}

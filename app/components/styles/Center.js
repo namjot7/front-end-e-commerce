@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const Center = styled.div`
-    width: 80vw;
+export const Center = styled.div`
+    width: 90vw;
     margin: auto;
     padding: 40px 10px;
 `;
@@ -11,4 +11,8 @@ export const Flex = styled.div`
     align-items: center;
     gap: 5px;
 `;
-export default Center;
+export const FlexCenter = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;

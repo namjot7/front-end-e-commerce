@@ -2,12 +2,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import { CartContext } from '../components/CartContext';
-import Center from '../components/styles/Center';
 import Button from '../components/Button';
 import { StyledCartContainer } from '../components/styles/StyledCart';
 import CartCard from '../components/CartCard';
 import OrderInfo from '../components/OrderInfo';
 import { SecondaryHead } from '../components/styles/StyledHeader';
+import { Center } from '../components/styles/Center';
 
 const Cart = () => {
     const { cartProducts, setCartProducts, clearCart, showSuccess } = useContext(CartContext); // stores product ids
