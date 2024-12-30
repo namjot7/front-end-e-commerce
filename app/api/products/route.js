@@ -2,6 +2,9 @@ import { initMongoose } from "@/lib/mongoose";
 import Product from "@/models/Product";
 import { NextResponse } from "next/server";
 
+
+// 4 Cases: Featured, Cart, Latest, All
+
 export const GET = async (req) => {
     await initMongoose();
 
@@ -12,7 +15,8 @@ export const GET = async (req) => {
 
     const id = searchParams.get('id');
     const ids = searchParams.get('ids');
-    console.log(id, ids);
+    const latest = searchParams.get('latest');
+    console.log({ id, ids, latest });
 
     // Featured product
     if (id) {
@@ -32,6 +36,11 @@ export const GET = async (req) => {
         return NextResponse.json(products);
     }
     // Latest products  
-    const latestProducts = await Product.find({}, null, { sort: { "updatedAt": -1 }, limit: 5 }); // OR  { sort: { "_id": -1 } } OR { sort: { "updatedAt": -1 }}).limit(5)
-    return NextResponse.json(latestProducts); // return an Array: latest updated being as array[0] first element
+    else if (latest) {
+        const latestProducts = await Product.find({}, null, { sort: { "updatedAt": -1 }, limit: 5 }); // OR  { sort: { "_id": -1 } } OR { sort: { "updatedAt": -1 }}).limit(5)
+        return NextResponse.json(latestProducts); // return an Array: latest updated being as array[0] first element
+    }
+    // All products
+    const allProducts = await Product.find();
+    return NextResponse.json(allProducts);
 }

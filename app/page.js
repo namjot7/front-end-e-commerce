@@ -8,7 +8,7 @@ import { CartContext } from "./components/CartContext";
 export default function Home() {
   return (
     <Layout>
-      {/* <Hero /> */}
+      <Hero />
       <LatestProducts />
     </Layout>
   );

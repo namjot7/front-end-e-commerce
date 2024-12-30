@@ -12,7 +12,7 @@ const Card = ({ _id, title, price, images, cartBtn }) => {
 
     return (
         <StyledCard>
-            {/* <div><img src={localhost + images[0]} alt="product image" /></div> */}
+            <div><img src={localhost + images[0]} alt="product image" /></div>
             <div className='card-content'>
                 <div>
                     <h4>{title}</h4>

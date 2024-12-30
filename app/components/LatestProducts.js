@@ -7,7 +7,7 @@ const LatestProducts = () => {
     const [latestProducts, setLatestProducts] = useState([]);
 
     useEffect(() => {
-        fetch("/api/products")
+        fetch("/api/products/?latest=true")
             .then(res => res.json())
             .then(data => setLatestProducts(data));
     }, []);
