@@ -27,11 +27,11 @@ const CartCard = ({ _id, title, price, images }) => {
             <div><img src={adminHost + images[0]} alt="" /></div>
             <div>
                 {/* <p>category</p> */}
-                <p className='title'>{title}</p>
+                <p>{title}</p>
                 <p>Qty: {quantity}</p>
                 <p>Color: Grey</p>
                 <Flex>
-                    <p className='price'>${quantity * price}</p>
+                    <p>${quantity * price}</p>
                     <QunatityLabel>
                         <MinusIcon onClick={e => decreaseQuantity(_id)} />
                         <span>{quantity}</span>

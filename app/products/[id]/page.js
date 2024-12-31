@@ -44,11 +44,8 @@ const ProductDetails = ({ params }) => {
     return (
         <Layout>
             <Center>
-                {/* <h1>Product Details</h1> */}
                 <StyledProductDetails>
-
                     <ProductImages images={product?.images || []} />
-
                     <ProductInfo>
                         <MainHead>{product?.title}</MainHead>
                         <div className='desc'>{product?.description}</div>

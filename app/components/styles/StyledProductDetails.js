@@ -1,10 +1,8 @@
-import Image from "next/image";
+import { mobile } from "@/app/assets/responsive";
 import styled from "styled-components";
-import css from "styled-jsx/css";
 
 export const StyledProductDetails = styled.div`
     display: flex;
-    /* align-items: center; */
     gap: 20px;
     padding: 20px 0;
     
@@ -12,6 +10,9 @@ export const StyledProductDetails = styled.div`
         border-radius: 8px;
         margin-right: 7px;
         margin-bottom: 11px;
+    }
+    @media (max-width: ${mobile}){
+        flex-direction: column-reverse;
     }
 `;
 export const HeroImage = styled.img`
@@ -21,7 +22,13 @@ export const HeroImage = styled.img`
 export const MiniImagesBox = styled.div`
     display: flex;
     flex-direction: column;
-    `;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media (max-width: ${mobile}){
+        flex-direction: row;
+    }
+`;
 export const MiniImages = styled.img`
     ${props => props.active == 1 ?
         "border: 3.5px solid #F09440;" : "border: 3.5px solid transparent;"}

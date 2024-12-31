@@ -1,3 +1,4 @@
+import { mobile } from '@/app/assets/responsive';
 import styled from 'styled-components'
 
 const StyledHero = styled.div`
@@ -7,13 +8,12 @@ const StyledHero = styled.div`
     display: flex;
     align-items: center;
     gap: 70px;
-    /* padding: 140px; */
     margin-bottom: 50px;
 
     h2{
         margin-bottom: 20px;
         font-size: 50px;
-        transition: 4 all ease-in-out;
+        transition: 4s all ease-in-out;
         text-shadow: 
             0 0 5px rgb(250, 139, 120),
             0 0 10px rgb(250, 139, 120),
@@ -33,11 +33,11 @@ const StyledHero = styled.div`
         }
         100% {
             text-shadow: 
-            0 0 5px rgb(255, 160, 149),
-            0 0 10px rgb(255, 160, 149),
-            0 0 30px rgb(255, 160, 149),
-            0 0 50px rgb(255, 160, 149),
-            0 0 80px rgb(255, 160, 149);
+            0 0 5px rgb(255, 66, 66),
+            0 0 10px rgb(255, 66, 66),
+            0 0 30px rgb(255, 66, 66),
+            0 0 50px rgb(255, 66, 66),
+            0 0 80px rgb(255, 66, 66);
         }
     }
     p{
@@ -47,10 +47,19 @@ const StyledHero = styled.div`
     }
     img{
         width: 90%;
-        font-size: 80px;
     }  
-    /* @media (max-width: 768px){
+    @media (max-width: ${mobile}){
         flex-direction: column-reverse;
-    }  */
+        text-align: center;
+        margin-bottom: 0px;
+
+        p{
+            font-size: 18px;
+            margin-top: 0px;
+        }
+        img{
+            width: 100%;
+        }
+    } 
 `;
 export default StyledHero;

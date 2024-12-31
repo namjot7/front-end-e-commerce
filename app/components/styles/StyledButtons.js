@@ -59,13 +59,14 @@ export const StyledLink = styled(Link)`
     text-decoration: none;
 `;
 export const StyledLinkSecondary = styled(Link)`
-  font-size: 20px;
-  color:rgb(159, 159, 159);
-  text-decoration: none;
-  margin: 0 10px;
-  transition: .19s all;
-  
-  &:hover{
-    color: #fff;
-  }
+    display: inline-block;
+    font-size: 20px;
+    color:rgb(159, 159, 159);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: .19s all;
+    
+    &:hover{
+        color: #fff;
+    }
 `;

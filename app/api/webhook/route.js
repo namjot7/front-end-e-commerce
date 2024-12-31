@@ -1,12 +1,12 @@
 import { initMongoose } from "@/lib/mongoose";
 import { NextResponse } from "next/server";
 import Stripe from 'stripe';
-import { buffer } from 'micro'
+// import { buffer } from 'micro' // not working
 import Order from "@/models/Order";
 
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-const endpointSecret = 'whsec_4cd2b1d64f33446717aca832162c70a012098aa2e7db170e7d778b15621aa33f';
+const endpointSecret = process.env.STRIPE_CLI_ENDPOINT_SECRET;
 
 export async function POST(req, res) {
     await initMongoose();
@@ -35,8 +35,7 @@ export async function POST(req, res) {
             }
             break;
         // other event types: charge.updated   payment_intent.created     charge.succeeded (got credit details)     payment_intent.succeeded
-        default:
-            console.log(`Unhandled event type ${event.type}`);
+        default: console.log(`Unhandled event type ${event.type}`);
     }
     return NextResponse.json({ success: "YES" });
 }
@@ -44,37 +43,3 @@ export async function POST(req, res) {
 export const config = {
     api: { bodyParser: false }
 };
-
-
-export async function GET(req, res) {
-    await initMongoose();
-
-    const sig = req.headers['stripe-signature'];
-
-    let event;
-
-    event = stripe.webhooks.constructEvent(await buffer(req), sig, endpointSecret); // req.body
-    // try {
-    // }
-    // catch (err) {
-    //     response.status(400).send(`Webhook Error: ${err.message}`);
-    // }
-
-    // Handle the event
-    switch (event.type) {
-        case 'payment_intent.succeeded':
-            const paymentIntent = event.data.object;
-            // Then define and call a method to handle the successful payment intent.
-            // handlePaymentIntentSucceeded(paymentIntent);
-            break;
-        case 'payment_method.attached':
-            const paymentMethod = event.data.object;
-            // Then define and call a method to handle the successful attachment of a PaymentMethod.
-            // handlePaymentMethodAttached(paymentMethod);
-            break;
-        // ... handle other event types
-        default:
-            console.log(`Unhandled event type ${event.type}`);
-    }
-    return NextResponse.json({ success: true });
-}

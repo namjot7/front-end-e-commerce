@@ -18,14 +18,12 @@ const Card = ({ _id, title, price, images, cartBtn }) => {
             </a>
             <div className='card-content'>
                 <div>
-                    <h4>{title}</h4>
-                    <span>${price}</span>
+                    <div>{title}</div>
+                    <div>${price}</div>
                 </div>
-                {/* {cartBtn && ( */}
                 <ButtonOutlined onClick={() => addProduct(_id)}>
                     <CartIcon />
                 </ButtonOutlined>
-                {/* )} */}
             </div>
         </StyledCard>
     )

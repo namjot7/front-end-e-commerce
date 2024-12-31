@@ -1,3 +1,4 @@
+import { mobile } from '@/app/assets/responsive';
 import styled from 'styled-components'
 
 // Main cart container, products card, quantity container,
@@ -12,10 +13,11 @@ export const StyledCartContainer = styled.div`
     /* >div:nth-child(2){
         padding: 15px 20px;
     } */
-    .title,.price{
-           font-size: 20px;
-           font-weight: 500;
+    @media (max-width: ${mobile}){
+        grid-template-columns: 1fr;
+        
     }
+
 `;
 export const StyledCartCard = styled.div`
     display: flex;
