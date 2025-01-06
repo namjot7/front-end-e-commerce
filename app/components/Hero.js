@@ -28,7 +28,8 @@ const Hero = () => { // featured product
                         <h2>{featuredProduct.title}</h2>
                         <p>From ${featuredProduct.price} or ${featuredProduct.price / 24}/mo. for 24 mos. at 7.99% APR</p>
                         <p>Apple Intelligence available now</p>
-                        <Button href={'/product/' + featuredProduct._id} primary={1} size='large'>Buy</Button>
+                        <Button href={'/products/' + featuredProduct._id}
+                            primary={1} size='large'>Buy</Button>
                     </div>
                     <div>
                         <img src={imageUrl} alt="product image" />

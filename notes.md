@@ -81,3 +81,17 @@ inside GET method
         }
     }, [cartProducts])
 ````
+
+
+### Stripe webhook
+
+In order for the Stripe webhook to work, (to set the isPaid status 'true'). 
+I need to run the following commands in a separate terminal
+
+````
+stripe login
+
+stripe listen --forward-to localhost:3000/api/webhook
+
+````
+copy the webhook secret and paste in .env file

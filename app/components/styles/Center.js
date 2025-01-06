@@ -5,12 +5,8 @@ export const Center = styled.div`
     width: 90vw;
     margin: auto;
     padding: 40px 10px;
-
-    @media (max-width: ${mobile}){
-        /* text-align: center; */
-    }
 `;
-export const Flex = styled.div`
+export const FlexBetween = styled.div`
     @media (max-width: ${mobile}){
 		width: 100%;
 	}
@@ -20,9 +16,9 @@ export const Flex = styled.div`
     gap: 5px;
 `;
 export const FlexCenter = styled.div`
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
-    position: relative;
 `;

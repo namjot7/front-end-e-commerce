@@ -3,14 +3,15 @@ import React, { useContext, useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import { CartContext } from '../components/CartContext';
 import Button from '../components/Button';
-import { StyledCartContainer } from '../components/styles/StyledCart';
+import { EmptyCart, PaymentSuccess, StyledCartContainer } from '../components/styles/StyledCart';
 import CartCard from '../components/CartCard';
 import OrderInfo from '../components/OrderInfo';
 import { SecondaryHead } from '../components/styles/StyledHeader';
-import { Center } from '../components/styles/Center';
+import { Center, FlexCenter } from '../components/styles/Center';
+import { CartIcon, TickIcon } from '../assets/buttons';
 
 const Cart = () => {
-    const { cartProducts, setCartProducts, clearCart, showSuccess } = useContext(CartContext); // stores product ids
+    const { cartProducts, clearCart, showSuccess } = useContext(CartContext); // stores product ids
 
     const [products, setProducts] = useState([])
     let totalPrice = 0;
@@ -22,19 +23,17 @@ const Cart = () => {
         totalPrice = totalPrice + price;
     }
 
+    // GET products from Database
     useEffect(() => {
-        // GET products from Database
         if (cartProducts?.length > 0) {
-
             // Unique ids: Remove duplicate products
             const uniqIds = [...new Set(cartProducts)]; // get unique Ids using Set and convert them back to array
             // console.log(uniqIds);
             fetch("/api/products/?ids=" + uniqIds.join(","))
                 .then(res => res.json())
                 .then(data => setProducts(data))
-
-            // calculatePrice();
         }
+        // calculatePrice();
     }, [cartProducts])
 
     // Payment Successful
@@ -49,26 +48,31 @@ const Cart = () => {
     return (
         <Layout>
             <Center>
-                <h1>Cart</h1>
 
-                {showSuccess && <SecondaryHead>
-                    Payment Successful. We will sent you an email when your order is shipped.
-                </SecondaryHead>}
+                {showSuccess &&
+                    <PaymentSuccess>
+                        <TickIcon />
+                        <p>Payment Successful. We will sent you an email when your order is shipped.</p>
+                    </PaymentSuccess>
+                }
 
-                {!!cartProducts?.length && <StyledCartContainer>
-                    <div>
-                        {products.map(product => (
-                            <CartCard key={product._id} {...product} />
-                        ))}
-                    </div>
-                    <OrderInfo totalPrice={totalPrice} cartProducts={cartProducts} />
-                </StyledCartContainer>}
+                {!!cartProducts?.length &&
+                    <StyledCartContainer>
+                        <h1>Cart</h1>
+                        <div>
+                            {products.map(product => (
+                                <CartCard key={product._id} {...product} />
+                            ))}
+                        </div>
+                        <OrderInfo totalPrice={totalPrice} cartProducts={cartProducts} />
+                    </StyledCartContainer>}
 
                 {!cartProducts?.length &&
-                    <div>
-                        <h2>Cart is empty.</h2>
+                    <EmptyCart>
+                        <img src="/cart.png" alt="" />
+                        <h1>Your Cart is <span>Empty!</span></h1>
                         <Button primary="y" href="/products">Explore the store</Button>
-                    </div>
+                    </EmptyCart>
                 }
             </Center>
         </Layout>

@@ -46,7 +46,7 @@ const StyledHero = styled.div`
         margin-top: 10px;
     }
     img{
-        width: 90%;
+        width: 80%;
     }  
     @media (max-width: ${mobile}){
         flex-direction: column-reverse;

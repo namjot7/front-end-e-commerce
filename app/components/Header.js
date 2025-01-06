@@ -4,7 +4,7 @@ import { StyledHeader, Logo, StyledNav, HeaderActions, CartLength, MobileNavCart
 import { CartContext } from './CartContext'
 import { StyledLinkSecondary } from './styles/StyledButtons'
 import { CartIcon, HamburgerIcon } from '../assets/buttons'
-import { Flex, FlexCenter } from './styles/Center'
+import { FlexBetween, FlexCenter } from './styles/Center'
 
 export let adminHost = process.env.NEXT_PUBLIC_ADMIN_LOCAL_HOST;
 
@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <Flex>
+      <FlexBetween>
         <HamburgerIcon
           onClick={() => setShowNav(!showNav)} className="bars" />
         <Logo href={"/"} className="logo" onClick={e => setShowNav(false)}>
@@ -35,15 +35,13 @@ const Header = () => {
             </FlexCenter>
           </StyledLinkSecondary>
         </MobileNavCart>
-      </Flex>
+      </FlexBetween>
 
       <StyledNav shownav={showNav ? 1 : 0}>
         <StyledLinkSecondary href={"/"}
           onClick={e => setShowNav(false)}>Home</StyledLinkSecondary>
         <StyledLinkSecondary href={"/products"}
           onClick={e => setShowNav(false)}>Products</StyledLinkSecondary>
-        <StyledLinkSecondary href={"/orders"}
-          onClick={e => setShowNav(false)}>Orders</StyledLinkSecondary>
         <StyledLinkSecondary href={"/cart"}
           onClick={e => setShowNav(false)}>Cart ({cartProducts?.length || "0"})</StyledLinkSecondary>
       </StyledNav>

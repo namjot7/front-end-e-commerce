@@ -44,3 +44,30 @@ export const QunatityLabel = styled.div`
     align-items: center;
     gap: 7px;
 `;
+export const EmptyCart = styled.div`
+    height: 77vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img{
+        width: 300px;
+        margin-bottom: 30px;
+    }
+    span{
+        color: #FF0000;
+    }
+`;
+export const PaymentSuccess = styled.div`
+    height: 70vh;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    animation: fade-out 1s ;
+`;
+
